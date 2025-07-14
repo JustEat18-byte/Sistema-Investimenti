@@ -24,3 +24,5 @@ app.get("/saldo/:userId", (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log("Server attivo sulla porta", PORT));
+
+app.use(cors()); // Attenzione: non sicuro in produzione
