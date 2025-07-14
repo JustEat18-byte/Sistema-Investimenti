@@ -30,3 +30,13 @@ const cors = require("cors");
 app.use(cors({
   origin: "https://sistema-investimenti.vercel.app/"
 }));
+
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb+srv://adminuser:testpass123@cluster0.0shdhtg.mongodb.net/banca-rp?retryWrites=true&w=majority&appName=Cluster0', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log('✅ Connessione a MongoDB Atlas riuscita'))
+.catch(err => console.error('❌ Errore MongoDB:', err));
+
