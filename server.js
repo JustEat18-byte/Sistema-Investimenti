@@ -46,3 +46,29 @@ const Acquisto = mongoose.model('Acquisto', new mongoose.Schema({
   prezzo: Number,
   data: { type: Date, default: Date.now }
 }));
+const express = require('express');
+const app = express();
+app.use(express.json()); // Per leggere i JSON nelle richieste
+
+app.post('/acquista', async (req, res) => {
+  const { userId, prodotto, prezzo } = req.body;
+
+  try {
+    const nuovo = new Acquisto({ userId, prodotto, prezzo });
+    await nuovo.save();
+    res.json({ success: true });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+
+app.get('/acquisti/:userId', async (req, res) => {
+  try {
+    const acquisti = await Acquisto.find({ userId: req.params.userId });
+    res.json(acquisti);
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
