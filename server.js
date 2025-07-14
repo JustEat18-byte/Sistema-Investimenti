@@ -40,3 +40,9 @@ mongoose.connect('mongodb+srv://adminuser:testpass123@cluster0.0shdhtg.mongodb.n
 .then(() => console.log('✅ Connessione a MongoDB Atlas riuscita'))
 .catch(err => console.error('❌ Errore MongoDB:', err));
 
+const Acquisto = mongoose.model('Acquisto', new mongoose.Schema({
+  userId: String,
+  prodotto: String,
+  prezzo: Number,
+  data: { type: Date, default: Date.now }
+}));
